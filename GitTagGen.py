@@ -7,25 +7,22 @@ from git import Repo
 class GitTagGen:
     def __init__(self):
         path = pathlib.Path().resolve()
-        self.git = Repo(path).git
+        self.repo = Repo(path)
 
     def generate_dev_tag(self):
         tag = f'dev/{datetime.datetime.now().strftime("%Y-%m-%dT%H%M")}'
-        repo = self.git.Repo('/')
-        repo.create_tag(tag)
-        repo.remote.origin.push(tag)
+        self.repo.create_tag(tag)
+        self.repo.remote('origin').push(tag)
 
     def generate_qa_tag(self):
         tag = f'qa/{datetime.datetime.now().strftime("%Y-%m-%dT%H%M")}'
-        repo = self.git.Repo('/')
-        repo.create_tag(tag)
-        repo.remote.origin.push(tag)
+        self.repo.create_tag(tag)
+        self.repo.remote('origin').push(tag)
 
     def generate_uat_tag(self):
         tag = f'uat/{datetime.datetime.now().strftime("%Y-%m-%dT%H%M")}'
-        repo = self.git.Repo('/')
-        repo.create_tag(tag)
-        repo.remote.origin.push(tag)
+        self.repo.create_tag(tag)
+        self.repo.remote('origin').push(tag)
 
 
 def main():
@@ -48,10 +45,10 @@ def main():
             tag_manager.generate_dev_tag()
             tag_manager.generate_qa_tag()
 
-        print('https://app.circleci.com/pipelines/github/syngenta-digital')
+        print('pipline: https://app.circleci.com/pipelines/github/syngenta-digital \n')
     except Exception as error:
         print(error)
-        print('(╯°□°）╯︵ ┻━┻ \n')
+        print('Error (╯°□°）╯︵ ┻━┻ \n')
 
 
 if __name__ == '__main__':
