@@ -36,8 +36,8 @@ def main():
                            ' 1.dev \n'
                            ' 2.qa \n'
                            ' 3.dev & qa \n'
-                           ' 9.uat \n'
-                           ' 0.prod \n'
+                           ' 400.uat \n'
+                           ' 900.prod \n'
                            ))
 
         tag_manager = GitTagGen()
@@ -49,9 +49,9 @@ def main():
         elif option == 3:
             tag_manager.generate_dev_tag()
             tag_manager.generate_qa_tag()
-        elif option == 9:
+        elif option == 400:
             tag_manager.generate_uat_tag()
-        elif option == 0:
+        elif option == 900:
             tag_manager.generate_prod_tag()
 
         print('pipline: https://app.circleci.com/pipelines/github/syngenta-digital \n')
